@@ -15,10 +15,19 @@ public class MusicDoor : MonoBehaviour
 
     IEnumerator ExampleCoroutine()
     {
-        for(int i=0; i < 4; i++)
+        for(int i=0; i < 5; i++)
         {
             yield return new WaitForSeconds(.5f);
             audioSrc.volume -= (float) .1;
+        }
+    }
+
+    IEnumerator FinalDoorCoroutine()
+    {
+        for(int i=0; i < 1; i++)
+        {
+            yield return new WaitForSeconds(.5f);
+            audioSrc.volume -= (float) .05;
         }
     }
 
@@ -26,10 +35,17 @@ public class MusicDoor : MonoBehaviour
     {
         if (collision.transform.tag == "Player" && !hasEntered)
         {
-            Debug.Log("Hit Door");
             hasEntered = true;
-            audioSrc.volume = .6f;
-            StartCoroutine(ExampleCoroutine());
+            if(this.name == "Door 7" || this.name == "Door 8")
+            {
+                audioSrc.volume = .1f;
+                StartCoroutine(FinalDoorCoroutine());
+            }
+            else
+            {
+                audioSrc.volume = .6f;
+                StartCoroutine(ExampleCoroutine());
+            }
         }
     }
 
