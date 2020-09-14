@@ -36,7 +36,7 @@ public class MusicDoor : MonoBehaviour
         if (collision.transform.tag == "Player" && !hasEntered)
         {
             hasEntered = true;
-            if(this.name == "Door 7" || this.name == "Door 8")
+            if(this.name == "Door 6" || this.name == "Door 7")
             {
                 audioSrc.volume = .1f;
                 StartCoroutine(FinalDoorCoroutine());
