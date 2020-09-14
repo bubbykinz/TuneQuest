@@ -13,12 +13,23 @@ public class MusicDoor : MonoBehaviour
         audioSrc = GetComponent<AudioSource>();
     }
 
+    IEnumerator ExampleCoroutine()
+    {
+        for(int i=0; i < 4; i++)
+        {
+            yield return new WaitForSeconds(.5f);
+            audioSrc.volume -= (float) .1;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Door" && !hasEntered)
+        if (collision.transform.tag == "Player" && !hasEntered)
         {
-            audioSrc.volume = 1;
+            Debug.Log("Hit Door");
             hasEntered = true;
+            audioSrc.volume = .6f;
+            StartCoroutine(ExampleCoroutine());
         }
     }
 

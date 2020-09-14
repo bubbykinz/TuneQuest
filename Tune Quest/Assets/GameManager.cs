@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
         {
             allDoors[i] = doors[i].GetComponent<MusicDoor>();
             audioSrc = doors[i].GetComponent<AudioSource>();
+            audioSrc.volume = 0;
             audioSrc.Play();
         }
     }
