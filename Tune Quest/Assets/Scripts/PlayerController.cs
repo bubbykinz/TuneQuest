@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Rigidbody2D rb;
+    public float moveSpeed = 3;
+    public float slowDown = .8f;
     void Start()
     {
-        
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -18,8 +20,19 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         Vector2 position = transform.position;
-        position.x = position.x + 0.1f * horizontal;
-        position.y = position.y + 0.1f * vertical;
-        transform.position = position;
+            if (horizontal != 0)
+            {
+            rb.AddForce(new Vector2(horizontal, 0) * moveSpeed * Time.deltaTime);
+            }
+        if (vertical != 0)
+        {
+            rb.AddForce(new Vector2(0, vertical) * moveSpeed * Time.deltaTime);
+        }      
+        if (horizontal == 0 && vertical == 0)
+            {
+            rb.velocity = rb.velocity * slowDown;
+            }
+        }
+
     }
-}
+
