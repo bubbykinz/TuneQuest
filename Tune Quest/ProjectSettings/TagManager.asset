@@ -14,6 +14,7 @@ TagManager:
   - Door 5
   - Door 6
   - Door 7
+  - Button
   layers:
   - Default
   - TransparentFX
