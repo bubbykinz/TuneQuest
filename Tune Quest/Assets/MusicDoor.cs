@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MusicDoor : MonoBehaviour
 {
     // Start is called before the first frame update
     AudioSource audioSrc;
     bool hasEntered = false;
+    Image musicImage;
 
     void Start()
     {
@@ -36,6 +38,9 @@ public class MusicDoor : MonoBehaviour
         if (collision.transform.tag == "Player" && !hasEntered)
         {
             hasEntered = true;
+            Image obj = GameObject.FindGameObjectWithTag(this.name).GetComponent<Image>();
+            obj.enabled = true;
+
             if(this.name == "Door 6" || this.name == "Door 7")
             {
                 audioSrc.volume = .1f;
